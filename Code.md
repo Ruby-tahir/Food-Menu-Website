@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>BiteHub Menu</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+            background:#fff;
+            color: #222;
+        }
+
+        header {
+            background: #1d4cb1;
+            padding: 16px;
+            text-align: center;
+            color: #f1f1f1;
+            font-size: 23px;
+            font-weight: 500;
+        }
+
+        nav {
+            background: #a05252;
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        nav a {
+            color: #eee;
+            padding: 10px 17px;
+            text-decoration: none;
+            font-size: 13px;
+        }
+
+        nav a:hover {
+            background: #1abc9c;
+        }
+
+        section {
+            display: none;
+            padding: 34px 18px;
+            max-width: 1000px;
+            margin: auto;
+        }
+
+        section.active {
+            display: block;
+        }
+
+        h2 {
+            margin-bottom: 18px;
+            text-align: center;
+        }
+
+        .menu-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 18px;
+        }
+
+        .card {
+            background: #fff;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            text-align: center;
+            padding: 13px;
+            transition: .3s;
+        }
+
+        .card:hover {
+            transform: scale(1.02);
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .card img {
+            width: 100%;
+            height: 150px;
+            object-fit: cover;
+            border-radius: 7px;
+        }
+
+        .card h3 {
+            margin: 10px 0;
+            font-size: 17px;
+        }
+
+        .card p {
+            color: #666;
+            font-size: 13px;
+        }
+
+        .card button,
+        form button {
+            margin-top: 8px;
+            padding: 9px 12px;
+            border: none;
+            border-radius: 4px;
+            background: #1abc9c;
+            color: #fff;
+            font-weight: 600;
+            cursor: pointer;
+        }
+
+        .card button:hover,
+        form button:hover {
+            background: #16a085;
+        }
+
+        form {
+            background: #fff;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+            max-width: 480px;
+            margin: 25px auto;
+        }
+
+        form label {
+            display: block;
+            margin-top: 10px;
+            font-weight: 600;
+        }
+
+        form input,
+        form select,
+        form textarea {
+            width: 100%;
+            padding: 9px;
+            margin-top: 5px;
+            border: 1px solid #bbb;
+            border-radius: 4px;
+        }
+
+        #cart {
+            background: #fff;
+            padding: 18px;
+            border-radius: 6px;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+            max-width: 600px;
+            margin: 18px auto;
+        }
+
+        #cart ul {
+            list-style: none;
+            margin-top: 10px;
+            padding: 0;
+        }
+
+        #cart li {
+            padding: 7px;
+            border-bottom: 1px solid #eee;
+            font-size: 14px;
+        }
+
+        #cart li:last-child {
+            border-bottom: none;
+        }
+
+        #cart p {
+            font-weight: 700;
+            margin-top: 12px;
+        }
+    </style>
+</head>
+
+<body>
+    <header>🍴 BiteHub Restaurant</header>
+    <nav>
+        <a href="#" onclick="showSection('pizzas')">Pizzas</a>
+        <a href="#" onclick="showSection('burgers')">Burgers</a>
+        <a href="#" onclick="showSection('drinks')">Drinks</a>
+        <a href="#" onclick="showSection('desserts')">Desserts</a>
+        <a href="#" onclick="showSection('order')">Checkout</a>
+    </nav>
+
+    <section id="pizzas" class="active">
+        <h2>🍕 Pizza Collection</h2>
+        <div class="menu-grid">
+            <div class="card">
+                <img src="https://i.pinimg.com/1200x/a6/11/71/a6117138e3fcc491bbc2c4d2f8d43e77.jpg">
+                <h3>Margherita</h3>
+                <p>₹230</p>
+                <button onclick="addToCart('Margherita',230)">Add</button>
+            </div>
+            <div class="card">
+                <img src="https://i.pinimg.com/736x/f0/86/c2/f086c2b68c7bc41d5371815fb4e0fc58.jpg">
+                <h3>Spicy Pepperoni</h3>
+                <p>₹310</p>
+                <button onclick="addToCart('Spicy Pepperoni',310)">Add</button>
+            </div>
+            <div class="card">
+                <img src="https://i.pinimg.com/736x/80/06/c3/8006c33556529e867cae636199a43cad.jpg">
+                <h3>Veg Delight</h3>
+                <p>₹240</p>
+                <button onclick="addToCart('Veg Delight',240)">Add</button>
+            </div>
+        </div>
+    </section>
+
+    <section id="burgers">
+        <h2>🍔 Juicy Burgers</h2>
+        <div class="menu-grid">
+            <div class="card">
+                <img src="https://i.pinimg.com/736x/ed/af/3f/edaf3f7ad6e1ad634cd1a0618bbcaac9.jpg">
+                <h3>House Burger</h3>
+                <p>₹160</p>
+                <button onclick="addToCart('House Burger',160)">Add</button>
+            </div>
+            <div class="card">
+                <img src="https://i.pinimg.com/1200x/b6/51/c4/b651c473c595f728118644568221637e.jpg">
+                <h3>Cheese Melt</h3>
+                <p>₹190</p>
+                <button onclick="addToCart('Cheese Melt',190)">Add</button>
+            </div>
+            <div class="card">
+                <img src="https://i.pinimg.com/736x/bd/f1/73/bdf17345afd708e550e77b2c71516c85.jpg">
+                <h3>Double Stack</h3>
+                <p>₹230</p>
+                <button onclick="addToCart('Double Stack',230)">Add</button>
+            </div>
+        </div>
+    </section>
+
+    <section id="drinks">
+        <h2>🥤 Refreshments</h2>
+        <div class="menu-grid">
+            <div class="card">
+                <img src="https://i.pinimg.com/736x/cc/cb/00/cccb00473890ed242fff3e0c66d3ff33.jpg">
+                <h3>Iced Coffee</h3>
+                <p>₹110</p>
+                <button onclick="addToCart('Iced Coffee',110)">Add</button>
+            </div>
+            <div class="card">
+                <img src="https://i.pinimg.com/736x/f7/cf/a1/f7cfa1c3c2473d0859a84f5fa444dfeb.jpg">
+                <h3>Orange Juice</h3>
+                <p>₹95</p>
+                <button onclick="addToCart('Orange Juice',95)">Add</button>
+            </div>
+            <div class="card">
+                <img src="https://i.pinimg.com/1200x/3c/0b/fc/3c0bfcaa51833f72a3641d3f7b6fe86b.jpg">
+                <h3>Mint Soda</h3>
+                <p>₹75</p>
+                <button onclick="addToCart('Mint Soda',75)">Add</button>
+            </div>
+        </div>
+    </section>
+
+    <section id="desserts">
+        <h2>🍩 Sweet Treats</h2>
+        <div class="menu-grid">
+            <div class="card">
+                <img src="https://i.pinimg.com/1200x/93/71/65/9371650280ba11f9f7fc65e1d9ce5d73.jpg">
+                <h3>Choco Lava Cake</h3>
+                <p>₹160</p>
+                <button onclick="addToCart('Choco Lava Cake',160)">Add</button>
+            </div>
+            <div class="card">
+                <img src="https://i.pinimg.com/1200x/7a/df/df/7adfdf1a95eb0651b0604a01f8fe84ff.jpg">
+                <h3>Vanilla Scoop</h3>
+                <p>₹85</p>
+                <button onclick="addToCart('Vanilla Scoop',85)">Add</button>
+            </div>
+            <div class="card">
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR-OLe6s8SrDaVqjb9GGaFVOeiWvxCRTWnbtY7YN3aUBlXW1Mb8GIhv_6TQ07jyvj0lkSU&usqp=CAU">
+                <h3>Walnut Brownie</h3>
+                <p>₹130</p>
+                <button onclick="addToCart('Walnut Brownie',130)">Add</button>
+            </div>
+        </div>
+    </section>
+
+    <section id="cart" style="display:none;">
+        <h2>🛒 Cart</h2>
+        <ul id="cartItems"></ul>
+        <p id="cartTotal">Total: ₹0</p>
+    </section>
+
+    <section id="order">
+        <h2>📝 Checkout</h2>
+        <form id="orderForm">
+            <label for="name">Your Name</label>
+            <input type="text" id="name" required>
+
+            <label for="address">Delivery Address</label>
+            <textarea id="address" required></textarea>
+
+            <label for="payment">Payment</label>
+            <select id="payment" required>
+                <option value="">--Choose--</option>
+                <option value="cod">Cash</option>
+                <option value="card">Card</option>
+                <option value="upi">UPI</option>
+            </select>
+
+            <button type="submit">Place Order</button>
+        </form>
+    </section>
+
+    <script>
+        let cart = [];
+
+        function showSection(id) {
+            document.querySelectorAll("section").forEach(s => s.classList.remove("active"));
+            document.getElementById(id).classList.add("active");
+
+            if (id === 'order' && cart.length > 0) {
+                document.getElementById('cart').style.display = 'block';
+            } else {
+                document.getElementById('cart').style.display = 'none';
+            }
+        }
+
+        function addToCart(name, price) {
+            cart.push({ name, price });
+            updateCart();
+            alert(name + " added!");
+        }
+
+        function updateCart() {
+            let cartItems = document.getElementById("cartItems");
+            let total = 0;
+            cartItems.innerHTML = "";
+            cart.forEach(item => {
+                let li = document.createElement("li");
+                li.textContent = item.name + " - ₹" + item.price;
+                cartItems.appendChild(li);
+                total += item.price;
+            });
+            document.getElementById("cartTotal").textContent = "Total: ₹" + total;
+        }
+
+        document.getElementById("orderForm").addEventListener("submit", e => {
+            e.preventDefault();
+            if (cart.length === 0) { alert("Cart is empty!"); return; }
+            let n = document.getElementById("name").value;
+            let a = document.getElementById("address").value;
+            let p = document.getElementById("payment").value;
+            alert("Order placed!\nName: " + n + "\nAddress: " + a + "\nPayment: " + p + "\nItems: " + cart.map(i => i.name).join(", "));
+        });
+    </script>
+</body>
+</html>
